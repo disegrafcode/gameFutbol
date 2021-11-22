@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>futbolFinal</title>
+  <link rel="shortcut icon" href="TemplateData/favicon.png">
+  <link rel="stylesheet" href="TemplateData/style.css?v=1.1">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"></script>
+  <style>
+    
+  </style>
+</head>
+
+<body class="dark">
+  <div class="presentation" id="presentation">
+    <div class="container-obj">
+      <div class="container-logo">
+        <img src="TemplateData/logo.png" alt="logo" class="logo-soccer">
+      </div>
+      <a id="play-video" class="video-play-button" href="javascript:void(0)" onclick="hideIntro()">
+        <span></span>
+      </a>
+      <div class="ball">
+        <div class="fof-ball mybounce">
+          <img src="TemplateData\ball.png" alt="" class="ball-inside fof-ball">
+        </div>
+      </div>
+      <ul class="social">
+        <li><a href="https://www.tiktok.com/@cesaralfaro2?lang=en" target="_blank"><img src="https://i.imgur.com/mSt3LeP.png"></a></li>
+        <li><a href="https://www.linkedin.com/in/cesar-alfaro-a2465a14a/" target="_blank"><img src="https://i.imgur.com/whoC7Qt.png"></a></li>
+        <li><a href="https://www.instagram.com/disegraf86/" target="_blank"><img src="https://i.imgur.com/xf7nFBi.png"></a></li>
+        <li><a href="https://www.youtube.com/channel/UCflFFQ3roEryjBV-Iv7vw9w" target="_blank"><img src="https://i.imgur.com/b5YuKom.png"></a></li>
+      </ul>
+    </div>
+    <div class="gradientBackground"></div>
+    <div class="backgroundStadium"></div>
+    
+  </div>
+  <div id="unity-container" class="unity-desktop">
+    <canvas id="unity-canvas"></canvas>
+  </div>
+  <div id="loading-cover" style="display:none;">
+    <div id="unity-loading-bar">
+      <div id="unity-logo"><img src="logo.png"></div>
+      <div id="unity-progress-bar-empty" style="display: none;">
+        <div id="unity-progress-bar-full"></div>
+      </div>
+      <p id="indicador">Loading...</p>
+      <div class="spinner"></div>
+    </div>
+  </div>
+  <div id="unity-fullscreen-button" style="display: none;"></div>
+
+  <script>
+    const intro = document.querySelector("#presentation");
+    function hideIntro()
+    {
+      intro.style.display = "none";
+    }
+  </script>
+
+  <script>
+    const hideFullScreenButton = "";
+    const buildUrl = "Build";
+    const loaderUrl = buildUrl + "/gameFutbol.loader.js";
+    const config = {
+      dataUrl: buildUrl + "/gameFutbol.data.unityweb",
+      frameworkUrl: buildUrl + "/gameFutbol.framework.js.unityweb",
+      codeUrl: buildUrl + "/gameFutbol.wasm.unityweb",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "DefaultCompany",
+      productName: "futbolFinal",
+      productVersion: "0.1",
+    };
+
+    const container = document.querySelector("#unity-container");
+    const canvas = document.querySelector("#unity-canvas");
+    const loadingCover = document.querySelector("#loading-cover");
+    const progressBarEmpty = document.querySelector("#unity-progress-bar-empty");
+    const progressBarFull = document.querySelector("#unity-progress-bar-full");
+    const fullscreenButton = document.querySelector("#unity-fullscreen-button");
+    const spinner = document.querySelector('.spinner');
+    const indicador = document.querySelector('#indicador');
+
+    const canFullscreen = (function () {
+      for (const key of [
+        'exitFullscreen',
+        'webkitExitFullscreen',
+        'webkitCancelFullScreen',
+        'mozCancelFullScreen',
+        'msExitFullscreen',
+      ]) {
+        if (key in document) {
+          return true;
+        }
+      }
+      return false;
+    }());
+
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+      container.className = "unity-mobile";
+      config.devicePixelRatio = 1;
+    }
+    loadingCover.style.display = "";
+
+    const script = document.createElement("script");
+    script.src = loaderUrl;
+    script.onload = () => {
+      createUnityInstance(canvas, config, (progress) => {
+        spinner.style.display = "none";
+        progressBarEmpty.style.display = "";
+        progressBarFull.style.width = `${100 * progress}%`;
+        let percent = parseInt(100 * progress);
+        indicador.innerHTML = `Loading...${percent}% <img src="TemplateData/ball.gif" class="ball-animation" />`;
+      }).then((unityInstance) => {
+        loadingCover.style.display = "none";
+        if (canFullscreen) {
+          if (!hideFullScreenButton) {
+            fullscreenButton.style.display = "";
+          }
+          fullscreenButton.onclick = () => {
+            unityInstance.SetFullscreen(1);
+          };
+        }
+      }).catch((message) => {
+        alert(message);
+      });
+    };
+    document.body.appendChild(script);
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,444 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+html, body {
+    height: 100%;
+}
+canvas {
+    display: block;
+}
+body {
+    margin: 0;
+}
+#unity-container {
+    width: 100%;
+    height: 100%;
+}
+#unity-canvas {
+    width: 100%;
+    height: 100%;
+    background: #231F20;
+}
+#loading-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#unity-loading-bar {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#unity-logo {
+    text-align: center;
+}
+#unity-logo img {
+    max-width: 80%;
+}
+#unity-progress-bar-empty {
+    width: 80%;
+    height: 24px;
+    margin: 10px 20px 20px 10px;
+    text-align: left;
+    border: 1px solid white;
+    padding: 2px;
+}
+#unity-progress-bar-full {
+    width: 0%;
+    height: 100%;
+    background: white;
+}
+.light #unity-progress-bar-empty {
+    border-color: black;
+}
+.light #unity-progress-bar-full {
+    background: black;
+}
+
+#unity-fullscreen-button {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 38px;
+    height: 38px;
+    background: url('fullscreen-button.png') no-repeat center;
+    background-size: contain;
+}
+
+.spinner,
+.spinner:after {
+  border-radius: 50%;
+  width: 5em;
+  height: 5em;
+}
+.spinner {
+  margin: 10px;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-left: 1.1em solid #ffffff;
+  transform: translateZ(0);
+  animation: spinner-spin 1.1s infinite linear;
+}
+@keyframes spinner-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*************************************************************************************/
+/*******************************mi ajuste********************************************/
+/*************************************************************************************/
+body,
+    html {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #indicador {
+      color: white;
+      font-size: 12px;
+    }
+
+    #unity-progress-bar-full {
+      background-color: maroon;
+      background-image: url(../TemplateData/bar.gif);
+
+    }
+
+    #unity-logo {
+      margin-bottom: 20px;
+    }
+
+    .ball-animation {
+      margin-bottom: -4px;
+      width: 20px;
+      height: auto;
+    }
+
+    .presentation {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 2525;
+      overflow: hidden;
+      background-color: black;
+    }
+
+    .backgroundStadium {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 25;
+      background-image: url(../TemplateData/stadiumCrowd.jpg);
+      background-position: 0 0;
+
+      animation: backgroundAnim linear 20s;
+      animation-iteration-count: infinite;
+      -webkit-animation: backgroundAnim linear 20s;
+      -webkit-animation-iteration-count: infinite;
+      -moz-animation: backgroundAnim linear 20s;
+      -moz-animation-iteration-count: infinite;
+      -o-animation: backgroundAnim linear 20s;
+      -o-animation-iteration-count: infinite;
+      -ms-animation: backgroundAnim linear 20s;
+      -ms-animation-iteration-count: infinite;
+
+    }
+
+    @keyframes backgroundAnim {
+      100% {
+        background-position: -512px -512px;
+      }
+    }
+
+    .gradientBackground {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 30;
+      background: rgb(0, 0, 0);
+      background: -moz-linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(8, 8, 8, 0) 50%, rgba(17, 17, 17, 1) 100%);
+      background: -webkit-linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(8, 8, 8, 0) 50%, rgba(17, 17, 17, 1) 100%);
+      background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(8, 8, 8, 0) 50%, rgba(17, 17, 17, 1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000", endColorstr="#111111", GradientType=1);
+    }
+
+    .container-obj {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 50;
+
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-align-content: center;
+      -ms-flex-line-pack: center;
+      align-content: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+
+    .video-play-button {
+      position: absolute;
+      z-index: 10;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      box-sizing: content-box;
+      display: block;
+      width: 32px;
+      height: 44px;
+      /* background: #31ad00; */
+      border-radius: 50%;
+      padding: 18px 20px 18px 28px;
+    }
+
+    .video-play-button:before {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      display: block;
+      width: 80px;
+      height: 80px;
+      background: #31ad00;
+      border-radius: 50%;
+      animation: pulse-border 1500ms ease-out infinite;
+    }
+
+    .video-play-button:after {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      display: block;
+      width: 80px;
+      height: 80px;
+      background: #31ad00;
+      border-radius: 50%;
+      transition: all 200ms;
+    }
+
+    .video-play-button:hover:after {
+      background-color: darken(#31ad00, 10%);
+    }
+
+    .video-play-button img {
+      position: relative;
+      z-index: 3;
+      max-width: 100%;
+      width: auto;
+      height: auto;
+    }
+
+    .video-play-button span {
+      display: block;
+      position: relative;
+      z-index: 3;
+      width: 0;
+      height: 0;
+      border-left: 32px solid #fff;
+      border-top: 22px solid transparent;
+      border-bottom: 22px solid transparent;
+    }
+
+    @keyframes pulse-border {
+      0% {
+        transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .container-logo {
+      width: 100%;
+      position: absolute;
+      z-index: 15;
+      text-align: center;
+      top: 5%;
+    }
+
+    .logo-soccer {
+      width: 20%;
+      min-width: 250px;
+    }
+
+    .ball {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 1;
+
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-align-content: center;
+      -ms-flex-line-pack: center;
+      align-content: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+
+    /*FOF-BALL-------------------------------------------*/
+    .fof-ball {
+
+      box-sizing: border-box;
+      -webkit-animation: spin 2s linear infinite;
+      -moz-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+    }
+
+    /*MORE ANIMATIONS--------------------------------------*/
+    .animated-bounce {
+      -webkit-animation-duration: 2s;
+      animation-duration: 2s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+    }
+
+    /*ROTATE*/
+    @-moz-keyframes spin {
+      100% {
+        -moz-transform: rotate(360deg);
+      }
+    }
+
+    @-webkit-keyframes spin {
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes mybounce {
+
+      from,
+      20%,
+      53%,
+      80%,
+      to {
+        -webkit-animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+
+      40%,
+      43% {
+        -webkit-animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+        animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+        -webkit-transform: translate3d(0, -40px, 0);
+        transform: translate3d(0, -40px, 0);
+      }
+
+      70% {
+        -webkit-animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+        animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+        -webkit-transform: translate3d(0, -30px, 0);
+        transform: translate3d(0, -30px, 0);
+      }
+
+      90% {
+        -webkit-transform: translate3d(0, -2px, 0);
+        transform: translate3d(0, -2px, 0);
+      }
+    }
+
+    .mybounce {
+      -webkit-animation-name: mybounce;
+      animation-name: mybounce;
+      -webkit-transform-origin: center bottom;
+      transform-origin: center bottom;
+    }
+
+    .social{
+      width: 100%;
+      position: absolute;
+      width: 100%;
+      height: auto;
+      bottom: 20px;
+      z-index: 2525;
+      margin: 0;
+      padding: 0;
+
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-flex-wrap: nowrap;
+      -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-align-content: center;
+      -ms-flex-line-pack: center;
+      align-content: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      list-style: none;
+    }
+    .social li
+    {
+      margin-left: 8px;
+      margin-right: 8px;
+    }
+/*************************************************************************************/
+/*******************************mi ajuste********************************************/
+/*************************************************************************************/
